@@ -25,37 +25,33 @@ export const init = (state, { domRoot }) => {
   const particleCount = lines
   for (var i = 0; i < particleCount; i++) {
     const line = data[i]
-    const vertex = new THREE.Vector3();
+    const vertex = new THREE.Vector3()
     vertex.x = line[0]
     vertex.y = line[1] 
     vertex.z = line[2]
     geometry.vertices.push(vertex)
+    
+    const colour = new THREE.Color(
+      line[3] / 255,
+      line[4] / 255,
+      line[5] / 255
+    )
+    geometry.colors.push(colour)
   }
-
-  const parameters = [
-    [[0.2, 1, 0.5], 1]    
-  ]
-  const parameterCount = parameters.length
-
-  const materials = []
-  for (var i = 0; i < parameterCount; i++) {
-    const color = parameters[i][0]
-    const size = parameters[i][1]
-    const mat = new THREE.PointsMaterial({ size })
-    materials.push(mat)
-    const particles = new THREE.Points(geometry, mat)
-    //particles.rotation.x = Math.random() * 6
-    //particles.rotation.y = Math.random() * 6
-    //particles.rotation.z = Math.random() * 6
-    scene.add(particles)
-  }
+    
+  const mat = new THREE.PointsMaterial({ 
+    size: 1, 
+    vertexColors: THREE.VertexColors 
+  })
+  const particles = new THREE.Points(geometry, mat)
+  scene.add(particles)  
   
   const renderer = new THREE.WebGLRenderer()
   renderer.setPixelRatio(window.devicePixelRatio)
   renderer.setSize(width, height)
   domRoot.appendChild(renderer.domElement)
   
-  Object.assign(state, { camera, scene, materials, renderer, parameters }) 
+  Object.assign(state, { camera, scene, renderer }) 
 }
 
 export const run = state => {
@@ -77,11 +73,6 @@ export const run = state => {
       object.rotation.y = 0
       object.rotation.z = -0.9//time * (i < 4 ? i + 1 : -(i + 1));
     }
-  }
-  for (var i = 0; i < materials.length; i++) {
-    const color = parameters[i][0]
-    const h = (360 * (color[0] + time) % 360) / 360
-    materials[i].color.setHSL(h, color[1], color[2])
-  }
+  }  
   renderer.render(scene, camera)
 }
