@@ -9,13 +9,13 @@
       "id": "loader-AcXRKQi-m",
       "type": "loader",
       "name": "loader",
-      "codeExpanded": true
+      "codeExpanded": false
     },
     {
       "id": "process-eHfj-uhiY",
       "type": "process",
       "name": "process",
-      "codeExpanded": true
+      "codeExpanded": false
     },
     {
       "id": "cloud-cGI-rmDCt",

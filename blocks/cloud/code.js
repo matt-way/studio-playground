@@ -10,7 +10,7 @@ export const init = (state, { domRoot }) => {
   const aspectRatio = width / height
   const nearPlane = 1
   const farPlane = 3000  
-  const cameraZ = 2000
+  const cameraZ = 90
   const fogHex = 0x00
   const fogDensity = 0.0007
 
@@ -18,7 +18,7 @@ export const init = (state, { domRoot }) => {
   camera.position.z = cameraZ
 
   const scene = new THREE.Scene()
-  scene.fog = new THREE.FogExp2(fogHex, fogDensity)
+  //scene.fog = new THREE.FogExp2(fogHex, fogDensity)
 
   const geometry = new THREE.Geometry()
 
@@ -51,28 +51,28 @@ export const init = (state, { domRoot }) => {
   renderer.setSize(width, height)
   domRoot.appendChild(renderer.domElement)
   
-  Object.assign(state, { camera, scene, renderer }) 
+  Object.assign(state, { camera, scene, renderer, cameraZ, particles }) 
+  
+  renderer.domElement.addEventListener('wheel', e => {
+    state.cameraZ += e.deltaY * 0.1    
+  }) 
 }
 
 export const run = state => {
-  const { camera, scene, materials, renderer, parameters } = state
-  const mouseX = 50
-  const mouseY = 100
+  const { camera, scene, materials, renderer, parameters, cameraZ, particles } = state
+  const mouseX = 0
+  const mouseY = 0
   
   var time = Date.now() * 0.00005
 
-  camera.position.x += (mouseX - camera.position.x) * 0.05
-  camera.position.y += (-mouseY - camera.position.y) * 0.05
-  camera.position.z = 700
+  camera.position.x = 0//+= (mouseX - camera.position.x) * 0.05
+  camera.position.y = 0//+= (-mouseY - camera.position.y) * 0.05
+  camera.position.z = cameraZ
   camera.lookAt(scene.position)
 
-  for (var i=0; i<scene.children.length; i++) {
-    const object = scene.children[i]
-    if (object instanceof THREE.Points) {
-      object.rotation.x = 0
-      object.rotation.y = 0
-      object.rotation.z = -0.9//time * (i < 4 ? i + 1 : -(i + 1));
-    }
-  }  
+  particles.rotation.x -= 0.001
+  particles.rotation.y += 0
+  particles.rotation.z += 0
+  
   renderer.render(scene, camera)
 }
