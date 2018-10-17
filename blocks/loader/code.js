@@ -1,7 +1,7 @@
 import fs from 'fs'
 import es from 'event-stream'
 
-export const init = async state => {
+export const run = async state => {
   
   state.data = []
   state.lines = 0
@@ -36,10 +36,4 @@ export const init = async state => {
     	})
     )
   })  
-}
-
-export const run = state => {
-  // This code is runfor every run cycle
-  //console.log(state.data)
-  //console.log(state.data[0], state.data.length)
 }

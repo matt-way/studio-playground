@@ -1,8 +1,8 @@
 import * as THREE from 'three'
 
-export const init = (state, { domRoot }) => {
+export const run = (state, { domRoot }) => {
 	
-  const { data, lines } = state
+  const { processedData, lines } = state
   
   const width = domRoot.clientWidth
   const height = 500      
@@ -24,7 +24,7 @@ export const init = (state, { domRoot }) => {
 
   const particleCount = lines
   for (var i = 0; i < particleCount; i++) {
-    const line = data[i]
+    const line = processedData[i]
     const vertex = new THREE.Vector3()
     vertex.x = line[0]
     vertex.y = line[1] 
@@ -32,9 +32,9 @@ export const init = (state, { domRoot }) => {
     geometry.vertices.push(vertex)
     
     const colour = new THREE.Color(
-      line[3] / 255,
-      line[4] / 255,
-      line[5] / 255
+      line[3],
+      line[4],
+      line[5]
     )
     geometry.colors.push(colour)
   }
@@ -58,7 +58,7 @@ export const init = (state, { domRoot }) => {
   }) 
 }
 
-export const run = state => {
+export const update = state => {
   const { camera, scene, materials, renderer, parameters, cameraZ, particles } = state
   const mouseX = 0
   const mouseY = 0
@@ -70,7 +70,8 @@ export const run = state => {
   camera.position.z = cameraZ
   camera.lookAt(scene.position)
 
-  particles.rotation.x -= 0.001
+  particles.rotation.x = -1.52
+  //particles.rotation.x -= 0.001
   particles.rotation.y += 0
   particles.rotation.z += 0
   
