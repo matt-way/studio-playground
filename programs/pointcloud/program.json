@@ -1,10 +1,22 @@
 {
   "control": {
-    "running": false,
+    "running": true,
     "resetting": false,
     "mode": 1
   },
   "blockInstances": [
+    {
+      "id": "loader-AcXRKQi-m",
+      "type": "loader",
+      "name": "loader",
+      "codeExpanded": true
+    },
+    {
+      "id": "process-eHfj-uhiY",
+      "type": "process",
+      "name": "process",
+      "codeExpanded": true
+    },
     {
       "id": "cloud-cGI-rmDCt",
       "type": "cloud",

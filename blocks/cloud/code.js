@@ -2,6 +2,8 @@ import * as THREE from 'three'
 
 export const init = (state, { domRoot }) => {
 	
+  const { data, lines } = state
+  
   const width = domRoot.clientWidth
   const height = 500      
   const fieldOfView = 75
@@ -20,21 +22,18 @@ export const init = (state, { domRoot }) => {
 
   const geometry = new THREE.Geometry()
 
-  const particleCount = 10000000
+  const particleCount = lines
   for (var i = 0; i < particleCount; i++) {
+    const line = data[i]
     const vertex = new THREE.Vector3();
-    vertex.x = Math.random() * 2000 - 1000
-    vertex.y = Math.random() * 2000 - 1000
-    vertex.z = Math.random() * 2000 - 1000
+    vertex.x = line[0]
+    vertex.y = line[1] 
+    vertex.z = line[2]
     geometry.vertices.push(vertex)
   }
 
   const parameters = [
-    [[1, 1, 0.5], 5],
-    [[0.95, 1, 0.5], 4],
-    [[0.90, 1, 0.5], 3],
-    [[0.85, 1, 0.5], 2],
-    [[0.80, 1, 0.5], 1]
+    [[0.2, 1, 0.5], 1]    
   ]
   const parameterCount = parameters.length
 
@@ -45,9 +44,9 @@ export const init = (state, { domRoot }) => {
     const mat = new THREE.PointsMaterial({ size })
     materials.push(mat)
     const particles = new THREE.Points(geometry, mat)
-    particles.rotation.x = Math.random() * 6
-    particles.rotation.y = Math.random() * 6
-    particles.rotation.z = Math.random() * 6
+    //particles.rotation.x = Math.random() * 6
+    //particles.rotation.y = Math.random() * 6
+    //particles.rotation.z = Math.random() * 6
     scene.add(particles)
   }
   
@@ -67,13 +66,16 @@ export const run = state => {
   var time = Date.now() * 0.00005
 
   camera.position.x += (mouseX - camera.position.x) * 0.05
-  camera.position.y += (-mouseY - camera.position.y) * 0.05  
+  camera.position.y += (-mouseY - camera.position.y) * 0.05
+  camera.position.z = 700
   camera.lookAt(scene.position)
 
   for (var i=0; i<scene.children.length; i++) {
     const object = scene.children[i]
     if (object instanceof THREE.Points) {
-      object.rotation.y = time * (i < 4 ? i + 1 : -(i + 1));
+      object.rotation.x = 0
+      object.rotation.y = 0
+      object.rotation.z = -0.9//time * (i < 4 ? i + 1 : -(i + 1));
     }
   }
   for (var i = 0; i < materials.length; i++) {
