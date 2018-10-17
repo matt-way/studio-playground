@@ -1,0 +1,32 @@
+{
+  "control": {
+    "running": false,
+    "resetting": false,
+    "mode": 1
+  },
+  "blockInstances": [
+    {
+      "id": "aaa-C0PsHG02O",
+      "type": "aaa",
+      "name": "aaa",
+      "codeExpanded": true
+    },
+    {
+      "id": "bbb-ug7l6fn-I",
+      "type": "bbb",
+      "name": "bbb",
+      "codeExpanded": true,
+      "memberOverrides": {
+        "A7cF3NMjB": {
+          "value": "hahaha"
+        },
+        "dxm5ui07w": {
+          "link": "asdasd"
+        },
+        "oBpUAGq6o": {
+          "link": "test"
+        }
+      }
+    }
+  ]
+}

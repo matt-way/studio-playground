@@ -1,0 +1,48 @@
+{
+  "control": {
+    "running": true,
+    "resetting": false,
+    "mode": 2
+  },
+  "blockInstances": [
+    {
+      "id": "test-mi2JwqRsx",
+      "type": "test",
+      "name": "test",
+      "codeExpanded": true
+    },
+    {
+      "id": "logger-QWEEn-Jvh",
+      "type": "logger",
+      "name": "logger",
+      "codeExpanded": true,
+      "memberOverrides": {
+        "Qhy0Xu1Ay": {
+          "link": {
+            "source": "test-mi2JwqRsx",
+            "path": "mainIter"
+          }
+        },
+        "0sxUpnEcO": {
+          "link": {
+            "source": "test-mi2JwqRsx",
+            "path": "clen"
+          }
+        },
+        "bU-wUU36j": {
+          "link": {
+            "source": "test-mi2JwqRsx",
+            "path": "size"
+          }
+        },
+        "tihmxFIlY": {
+          "link": {
+            "source": "test-mi2JwqRsx",
+            "path": "curExpr"
+          }
+        }
+      },
+      "disabled": false
+    }
+  ]
+}

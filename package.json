@@ -1,0 +1,10 @@
+{
+  "name": "new-syntropy-studio-workspace",
+  "keywords": [
+    "syntropy-studio-workspace"
+  ],
+  "dependencies": {
+    "event-stream": "^4.0.1",
+    "three": "^0.97.0"
+  }
+}

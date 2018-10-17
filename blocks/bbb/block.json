@@ -1,0 +1,18 @@
+{
+  "source": "code.js",
+  "members": [
+    {
+      "id": "A7cF3NMjB",
+      "stateKey": "someStatic"
+    },
+    {
+      "id": "dxm5ui07w",
+      "stateKey": "someLinka"
+    },
+    {
+      "id": "oBpUAGq6o",
+      "stateKey": "someLink"
+    }
+  ],
+  "renderer": true
+}

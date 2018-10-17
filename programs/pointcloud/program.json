@@ -1,0 +1,15 @@
+{
+  "control": {
+    "running": false,
+    "resetting": false,
+    "mode": 1
+  },
+  "blockInstances": [
+    {
+      "id": "cloud-cGI-rmDCt",
+      "type": "cloud",
+      "name": "cloud",
+      "codeExpanded": true
+    }
+  ]
+}

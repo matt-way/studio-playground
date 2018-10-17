@@ -1,0 +1,22 @@
+{
+  "source": "code.js",
+  "members": [
+    {
+      "id": "Qhy0Xu1Ay",
+      "stateKey": "mainIter"
+    },
+    {
+      "id": "0sxUpnEcO",
+      "stateKey": "clen"
+    },
+    {
+      "id": "bU-wUU36j",
+      "stateKey": "size"
+    },
+    {
+      "id": "tihmxFIlY",
+      "stateKey": "curExpr"
+    }
+  ],
+  "renderer": true
+}

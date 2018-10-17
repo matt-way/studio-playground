@@ -1,0 +1,1 @@
+# New Syntropy Studio Workspace
