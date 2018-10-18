@@ -9,15 +9,18 @@ export const run = state => {
   
   const avgs = totals.map(t => t / lines)
   
-  state.processedData = data.map(point => {
-    return [
-    	point[0] - avgs[0],
-    	point[1] - avgs[1],
-    	point[2] - avgs[2],
+  state.processedData = []
+  data.forEach((point, i) => {
+    if(i%6 === 0){
+    	state.processedData.push([
+    		point[0] - avgs[0],
+    		point[1] - avgs[1],
+    		point[2] - avgs[2],
     
-    	point[3] / 255,
-    	point[4] / 255,
-    	point[5] / 255
-    ]
+	    	point[3] / 255,
+	    	point[4] / 255,
+	    	point[5] / 255
+    	])
+    }
   })
 }

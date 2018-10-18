@@ -2,7 +2,7 @@ import * as THREE from 'three'
 
 export const run = (state, { domRoot }) => {
 	
-  const { processedData, lines } = state
+  const { processedData } = state
   
   const width = domRoot.clientWidth
   const height = 500      
@@ -22,7 +22,7 @@ export const run = (state, { domRoot }) => {
 
   const geometry = new THREE.Geometry()
 
-  const particleCount = lines
+  const particleCount = processedData.length
   for (var i = 0; i < particleCount; i++) {
     const line = processedData[i]
     const vertex = new THREE.Vector3()
@@ -40,7 +40,7 @@ export const run = (state, { domRoot }) => {
   }
     
   const mat = new THREE.PointsMaterial({ 
-    size: 1, 
+    size: 0.8, 
     vertexColors: THREE.VertexColors 
   })
   const particles = new THREE.Points(geometry, mat)
@@ -59,11 +59,11 @@ export const run = (state, { domRoot }) => {
 }
 
 export const update = state => {
-  const { camera, scene, materials, renderer, parameters, cameraZ, particles } = state
+  const { camera, scene, materials, renderer, parameters, cameraZ, particles, lines, processedData } = state
   const mouseX = 0
   const mouseY = 0
   
-  var time = Date.now() * 0.00005
+  var time = Date.now() * 0.005
 
   camera.position.x = 0//+= (mouseX - camera.position.x) * 0.05
   camera.position.y = 0//+= (-mouseY - camera.position.y) * 0.05
@@ -74,6 +74,11 @@ export const update = state => {
   //particles.rotation.x -= 0.001
   particles.rotation.y += 0
   particles.rotation.z += 0
+  
+  /*for(var i=0;i<processedData.length; i++){
+   	 particles.geometry.vertices[i].x = processedData[i][0] + Math.sin(time - processedData[i][1]) * 1
+  }
+  particles.geometry.verticesNeedUpdate = true*/
   
   renderer.render(scene, camera)
 }
